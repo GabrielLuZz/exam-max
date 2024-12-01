@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { DbModule } from './db/db.module';
+import { ExamModule } from './exam/exam.module';
 
 @Module({
   imports: [
@@ -9,6 +10,7 @@ import { DbModule } from './db/db.module';
       envFilePath: [__dirname + '/../../.env', __dirname + '/../.env'],
     }),
     DbModule,
+    ExamModule,
   ],
   controllers: [],
   providers: [],
