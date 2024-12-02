@@ -18,6 +18,21 @@ export const metadata: Metadata = {
   title: "Exam Max",
   description:
     "aplicação web para gerenciamento de agendamentos de exames hospitalares",
+  icons: [
+    { rel: "icon", sizes: "96x96", url: "/favicon-96x96.png" },
+    { rel: "icon", url: "/favicon.ico" },
+    {
+      rel: "apple-touch-icon",
+      sizes: "100x100",
+      url: "/apple-touch-icon.png",
+    },
+    { rel: "manifest", url: "/site.webmanifest" },
+  ],
+  robots: {
+    index: process.env.APP_ENV !== "production",
+    follow: process.env.APP_ENV !== "production",
+  },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
@@ -28,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${volkhov.className} ${poppins.className}`}>
-        {children}
+        <div className="relative">{children}</div>
       </body>
     </html>
   );
