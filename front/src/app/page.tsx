@@ -1,3 +1,3 @@
 export default function Home() {
-  return <div className="bg-app-heading-primary">home</div>;
+  return <main className="">home</main>;
 }

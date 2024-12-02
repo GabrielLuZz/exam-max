@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Volkhov, Poppins } from "next/font/google";
+import { Footer, Header } from "@/components/templates";
 
 const volkhov = Volkhov({
   display: "fallback",
@@ -43,7 +44,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${volkhov.className} ${poppins.className}`}>
-        <div className="relative">{children}</div>
+        <div className="relative flex flex-col min-h-screen">
+          <Header />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );
