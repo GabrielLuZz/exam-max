@@ -1,18 +1,26 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Volkhov, Poppins } from "next/font/google";
+import { Volkhov, Poppins, Inter } from "next/font/google";
 import { Footer, Header } from "@/components/templates";
 
 const volkhov = Volkhov({
   display: "fallback",
   subsets: ["latin"],
   weight: ["400", "700"],
+  variable: "--font-volkhov",
 });
 
 const poppins = Poppins({
   display: "fallback",
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-poppins",
+});
+
+const inter = Inter({
+  display: "fallback",
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -43,7 +51,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${volkhov.className} ${poppins.className}`}>
+      <body
+        className={`${volkhov.variable} ${poppins.variable} ${inter.variable}`}
+      >
         <div className="relative flex flex-col min-h-screen">
           <Header />
           {children}

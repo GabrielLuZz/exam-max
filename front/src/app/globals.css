@@ -30,10 +30,10 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
 
-    --app-primary: 210, 80%, 50%;
-    --app-secondary: 10 69% 60%;
-    --app-heading-primary: 233 52% 19%;
-    --app-text-blue-gray: 233 16% 44%;
+    --app-primary: 25 128 230;
+    --app-secondary: 223 106 83;
+    --app-heading-primary: 23 29 74;
+    --app-text-blue-gray: 94 98 130;
   }
   .dark {
     --background: 224 71.4% 4.1%;
@@ -68,7 +68,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-poppins;
   }
   main {
     @apply flex-1;
@@ -78,5 +78,10 @@
 @layer components {
   .wrapper {
     @apply mx-auto max-w-screen-xl w-full px-8;
+  }
+}
+
+@layer utilities {
+  .font-volkhov {
   }
 }

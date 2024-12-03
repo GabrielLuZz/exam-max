@@ -3,7 +3,10 @@ import logo from "@/assets/img/logo.svg";
 
 export function Header() {
   return (
-    <header className="pt-14">
+    <header
+      className="pt-14"
+      style={{ marginBottom: "clamp(2rem, 8.375cqi, 8.375rem)" }}
+    >
       <div className="wrapper">
         <Image
           src={logo}

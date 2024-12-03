@@ -52,10 +52,10 @@ const config: Config = {
         },
 
         app: {
-          primary: "hsl(var(--app-primary))",
-          secondary: "hsl(var(--app-secondary))",
-          "heading-primary": "hsl(var(--app-heading-primary))",
-          "text-blue-gray": "hsl(var(--app-text-blue-gray))",
+          primary: "rgb(var(--app-primary))",
+          secondary: "rgb(var(--app-secondary))",
+          "heading-primary": "rgb(var(--app-heading-primary))",
+          "text-blue-gray": "rgb(var(--app-text-blue-gray))",
         },
       },
       borderRadius: {
@@ -64,8 +64,15 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        volkhov: ["Volkhov", "serif"],
-        poppins: ["Poppins", "sans-serif"],
+        volkhov: ["var(--font-volkhov)", "serif"],
+        poppins: ["var(--font-poppins)", "sans-serif"],
+        inter: ["var(--font-inter)", "sans-serif"],
+      },
+      boxShadow: {
+        "app-shadow-secondary": "0 20px 35px rgb(var(--app-secondary) / .3)",
+      },
+      backgroundImage: {
+        "underline-deco": "url('../assets/img/underline-deco.svg')",
       },
     },
   },
