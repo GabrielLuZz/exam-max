@@ -63,6 +63,9 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      gridTemplateColumns: {
+        "exam-cards-list": "repeat(auto-fill, 20rem)",
+      },
       fontFamily: {
         volkhov: ["var(--font-volkhov)", "serif"],
         poppins: ["var(--font-poppins)", "sans-serif"],
@@ -70,9 +73,11 @@ const config: Config = {
       },
       boxShadow: {
         "app-shadow-secondary": "0 20px 35px rgb(var(--app-secondary) / .3)",
+        "app-shadow-primary": "0 20px 35px rgb(var(--app-primary) / .3)",
       },
       backgroundImage: {
         "underline-deco": "url('../assets/img/underline-deco.svg')",
+        "back-exam-card": "url('../assets/img/back-exam-card.jpg')",
       },
     },
   },
