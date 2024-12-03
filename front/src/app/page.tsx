@@ -25,7 +25,7 @@ export default function Home() {
             height={626}
             src={little_doctor}
             alt=""
-            className="absolute right-0 bottom-[-0rem] z-[-1] w-full max-w-[21.5rem] sm:max-w-[25rem] lg:w-auto lg:max-w-[none]"
+            className="absolute right-0 bottom-[-0rem] z-[-1] w-full max-w-[21.5rem] sm:max-w-[25rem] lg:max-w-[28rem]"
           />
           <span
             className="font-poppins font-bold text-app-secondary mb-6 uppercase "
@@ -57,7 +57,7 @@ export default function Home() {
             href="/exames"
             className={`${buttonVariants({
               variant: "big",
-            })} px-6 py-4 h-auto shadow-app-shadow-secondary mb-5`}
+            })} px-6 py-4 h-auto shadow-app-shadow-secondary mb-12`}
           >
             Find out more
           </Link>
