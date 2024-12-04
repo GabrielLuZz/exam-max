@@ -1,8 +1,30 @@
 import bg_blue_deco from "@/assets/img/bg-blue-deco.svg";
+import { baseUrl } from "@/services/back";
+import { ExamType } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function PageExames() {
+const getExams = async (): Promise<ExamType[]> => {
+  const headers = new Headers();
+
+  const examsOptions = {
+    headers: headers,
+  };
+
+  const examsResponse = await fetch(`${baseUrl}/exam`, examsOptions)
+    .then((response) => {
+      console.log("\n\n\n\n\n\n\n\n\n\n", response, "\n\n\n\n\n\n\n\n\n\n");
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Erro durante a requisição para pegar os exames:", error);
+    });
+
+  return examsResponse;
+};
+
+export default async function PageExames() {
+  const exams = await getExams();
   return (
     <>
       <div className="absolute right-0 top-[-3rem] z-[-1] h-full overflow-hidden flex items-end">
@@ -32,72 +54,19 @@ export default function PageExames() {
               marginBottom: "clamp(1rem ,1.875cqi, 1.875rem)",
             }}
           >
-            <Link
-              href=""
-              className="block aspect-[320/220] rounded-[1.375rem] bg-back-exam-card bg-no-repeat bg-cover shadow-app-shadow-primary relative flex items-center px-[1.875rem] py-5 hover-opacity"
-            >
-              <h2 className="font-volkhov font-bold text-3xl text-black">
-                Raio X
-              </h2>
-              <span className="absolute right-5 bottom-5 text-[1.25rem] font-poppins font-medium">
-                Dermatologia
-              </span>
-            </Link>
-            <Link
-              href=""
-              className="block aspect-[320/220] rounded-[1.375rem] bg-back-exam-card bg-no-repeat bg-cover shadow-app-shadow-primary relative flex items-center px-[1.875rem] py-5 transition-opacity duration-200 hover:opacity-80"
-            >
-              <h2 className="font-volkhov font-bold text-3xl text-black">
-                Raio X
-              </h2>
-              <span className="absolute right-5 bottom-5 text-[1.25rem] font-poppins font-medium">
-                Dermatologia
-              </span>
-            </Link>
-            <Link
-              href=""
-              className="block aspect-[320/220] rounded-[1.375rem] bg-back-exam-card bg-no-repeat bg-cover shadow-app-shadow-primary relative flex items-center px-[1.875rem] py-5 transition-opacity duration-200 hover:opacity-80"
-            >
-              <h2 className="font-volkhov font-bold text-3xl text-black">
-                Raio X
-              </h2>
-              <span className="absolute right-5 bottom-5 text-[1.25rem] font-poppins font-medium">
-                Dermatologia
-              </span>
-            </Link>
-            <Link
-              href=""
-              className="block aspect-[320/220] rounded-[1.375rem] bg-back-exam-card bg-no-repeat bg-cover shadow-app-shadow-primary relative flex items-center px-[1.875rem] py-5 transition-opacity duration-200 hover:opacity-80"
-            >
-              <h2 className="font-volkhov font-bold text-3xl text-black">
-                Raio X
-              </h2>
-              <span className="absolute right-5 bottom-5 text-[1.25rem] font-poppins font-medium">
-                Dermatologia
-              </span>
-            </Link>
-            <Link
-              href=""
-              className="block aspect-[320/220] rounded-[1.375rem] bg-back-exam-card bg-no-repeat bg-cover shadow-app-shadow-primary relative flex items-center px-[1.875rem] py-5 transition-opacity duration-200 hover:opacity-80"
-            >
-              <h2 className="font-volkhov font-bold text-3xl text-black">
-                Raio X
-              </h2>
-              <span className="absolute right-5 bottom-5 text-[1.25rem] font-poppins font-medium">
-                Dermatologia
-              </span>
-            </Link>
-            <Link
-              href=""
-              className="block aspect-[320/220] rounded-[1.375rem] bg-back-exam-card bg-no-repeat bg-cover shadow-app-shadow-primary relative flex items-center px-[1.875rem] py-5 transition-opacity duration-200 hover:opacity-80"
-            >
-              <h2 className="font-volkhov font-bold text-3xl text-black">
-                Raio X
-              </h2>
-              <span className="absolute right-5 bottom-5 text-[1.25rem] font-poppins font-medium">
-                Dermatologia
-              </span>
-            </Link>
+            {exams?.map((exam) => (
+              <Link
+                href={`/exame/${exam?.id}`}
+                className="block aspect-[320/220] rounded-[1.375rem] bg-back-exam-card bg-no-repeat bg-cover shadow-app-shadow-primary relative flex items-center px-[1.875rem] py-5 hover-opacity"
+              >
+                <h2 className="font-volkhov font-bold text-3xl text-black">
+                  {exam?.name}
+                </h2>
+                <span className="absolute right-5 bottom-5 text-[1.25rem] font-poppins font-medium">
+                  {exam?.specialty}
+                </span>
+              </Link>
+            ))}
           </section>
         </div>
       </main>
