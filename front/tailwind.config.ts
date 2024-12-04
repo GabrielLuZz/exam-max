@@ -74,6 +74,7 @@ const config: Config = {
       boxShadow: {
         "app-shadow-secondary": "0 20px 35px rgb(var(--app-secondary) / .3)",
         "app-shadow-primary": "0 20px 35px rgb(var(--app-primary) / .3)",
+        "app-shadow-inner": "inset 0 -4px 4px rgb(0 0 0 / 0.25)",
       },
       backgroundImage: {
         "underline-deco": "url('../assets/img/underline-deco.svg')",

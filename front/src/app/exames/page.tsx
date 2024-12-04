@@ -26,7 +26,7 @@ export default function PageExames() {
           </h1>
 
           <section
-            className="grid w-full grid-cols-1 justify-center min-[380px]:grid-cols-exam-cards-list"
+            className="responsive-grid"
             style={{
               gap: "clamp(1.6rem, 3.625cqi, 3.625rem)",
               marginBottom: "clamp(1rem ,1.875cqi, 1.875rem)",
@@ -34,7 +34,7 @@ export default function PageExames() {
           >
             <Link
               href=""
-              className="block aspect-[320/220] rounded-[1.375rem] bg-back-exam-card bg-no-repeat bg-cover shadow-app-shadow-primary relative flex items-center px-[1.875rem] py-5 transition-opacity duration-200 hover:opacity-80"
+              className="block aspect-[320/220] rounded-[1.375rem] bg-back-exam-card bg-no-repeat bg-cover shadow-app-shadow-primary relative flex items-center px-[1.875rem] py-5 hover-opacity"
             >
               <h2 className="font-volkhov font-bold text-3xl text-black">
                 Raio X

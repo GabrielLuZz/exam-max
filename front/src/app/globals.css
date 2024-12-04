@@ -79,9 +79,13 @@
   .wrapper {
     @apply mx-auto max-w-screen-xl w-full px-8;
   }
+  .responsive-grid {
+    @apply grid w-full grid-cols-1 justify-center min-[380px]:grid-cols-exam-cards-list;
+  }
 }
 
 @layer utilities {
-  .font-volkhov {
+  .hover-opacity {
+    @apply transition-opacity duration-200 hover:opacity-80;
   }
 }

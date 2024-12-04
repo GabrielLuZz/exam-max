@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import logo from "@/assets/img/logo.svg";
-import { UIEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,6 +17,7 @@ export function Header() {
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -30,10 +32,13 @@ export function Header() {
       style={{ marginBottom: "clamp(2rem, 6.375cqi, 6.375rem)" }}
     >
       <div className="wrapper">
-        <Image
-          src={logo}
-          alt="logo escrita Exam Max, da cor preta e azul e com uma prancheta pequena em cima da letra m."
-        />
+        <Link href="/" className="hover-opacity inline-block">
+          <Image
+            src={logo}
+            alt="logo escrita Exam Max, da cor preta e azul e com uma prancheta pequena em cima da letra m."
+            priority
+          />
+        </Link>
       </div>
     </header>
   );
