@@ -2,26 +2,11 @@
 import { formatText } from "@/utils/text";
 import { ConfirmModal } from "./ConfirmModal";
 import { X } from "lucide-react";
-import { useEffect, useState } from "react";
-import { baseUrl } from "@/services/back";
+import { useState } from "react";
 
 export function AppointmentCard() {
   const [open, setOpen] = useState(false);
 
-  const getData = async () => {
-    const examsResponse = await fetch(`${baseUrl}/exam`)
-      .then((response) => {
-        console.log("\n\n\n\n\n\n\n\n\n\n", response, "\n\n\n\n\n\n\n\n\n\n");
-        return response.json();
-      })
-      .catch((error) => {
-        console.error("Erro durante a requisição para pegar os exames:", error);
-      });
-  };
-
-  useEffect(() => {
-    getData();
-  });
   return (
     <>
       <article

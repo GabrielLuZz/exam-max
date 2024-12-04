@@ -14,11 +14,23 @@ export class ExamService {
     private readonly examRepository: Repository<ExamEntity>,
   ) {}
 
-  // Método para pegar todos os exames
   async findAll(): Promise<ExamEntity[]> {
     return this.examRepository.find({
       relations: ['schedules'],
     });
+  }
+
+  async findOne(id: string): Promise<ExamEntity> {
+    const exam = await this.examRepository.findOne({
+      where: { id },
+      relations: ['schedules'],
+    });
+
+    if (!exam) {
+      throw new NotFoundException(`Exam with ID ${id} not found.`);
+    }
+
+    return exam;
   }
 
   async removeAvailableDate(

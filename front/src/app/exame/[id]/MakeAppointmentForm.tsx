@@ -8,8 +8,6 @@ import React from "react";
 export function MakeAppointmentForm() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
 
-  console.log(date);
-
   return (
     <form>
       <div className="flex justify-between items-center mb-8">

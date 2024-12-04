@@ -1,5 +1,5 @@
 import bg_blue_deco from "@/assets/img/bg-blue-deco.svg";
-import { baseUrl } from "@/services/back";
+import { baseUrlForServer } from "@/services/back";
 import { ExamType } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,9 +11,8 @@ const getExams = async (): Promise<ExamType[]> => {
     headers: headers,
   };
 
-  const examsResponse = await fetch(`${baseUrl}/exam`, examsOptions)
+  const examsResponse = await fetch(`${baseUrlForServer}/exam`, examsOptions)
     .then((response) => {
-      console.log("\n\n\n\n\n\n\n\n\n\n", response, "\n\n\n\n\n\n\n\n\n\n");
       return response.json();
     })
     .catch((error) => {
@@ -56,6 +55,7 @@ export default async function PageExames() {
           >
             {exams?.map((exam) => (
               <Link
+                key={exam?.id}
                 href={`/exame/${exam?.id}`}
                 className="block aspect-[320/220] rounded-[1.375rem] bg-back-exam-card bg-no-repeat bg-cover shadow-app-shadow-primary relative flex items-center px-[1.875rem] py-5 hover-opacity"
               >
