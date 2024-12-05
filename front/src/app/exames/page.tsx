@@ -11,7 +11,10 @@ const getExams = async (): Promise<ExamType[]> => {
     headers: headers,
   };
 
-  const examsResponse = await fetch(`${baseUrlForServer}/exam`, examsOptions)
+  const examsResponse = await fetch(`${baseUrlForServer}/exam`, {
+    cache: "no-cache",
+    ...examsOptions,
+  })
     .then((response) => {
       return response.json();
     })

@@ -31,7 +31,7 @@ export default function Home() {
             className="font-poppins font-bold text-app-secondary mb-6 uppercase "
             style={{ fontSize: "clamp(.875rem, 1.25cqi, 1.25rem)" }}
           >
-            Best Destinations around the world
+            Agende seus Exames com Facilidade
           </span>
           <h1
             className="font-volkhov font-bold text-app-heading-primary max-w-[34rem] mb-7 relative after:hidden after:absolute after:top-0 after:w-[20rem] after:h-3 after:bg-underline-deco after:bg-no-repeat after:right-[-3rem] after:top-[4.2rem] after:z-[-1] sm:after:block"
@@ -40,7 +40,7 @@ export default function Home() {
               lineHeight: "clamp(3.75rem, 5.5cqi, 5.5rem)",
             }}
           >
-            Travel, enjoy and live a new and full life
+            Cuide da sua saúde, tenha conforto e bem-estar
           </h1>
           <p
             className="font-poppins font-medium text-app-text-blue-gray max-w-[30rem] mb-8"
@@ -49,9 +49,9 @@ export default function Home() {
               lineHeight: "clamp(1.5rem, 2cqi, 2rem)",
             }}
           >
-            Built Wicket longer admire do barton vanity itself do in it.
-            Preferred to sportsmen it engrossed listening. Park gate sell they
-            west hard for the.
+            Marque seus exames com agilidade e segurança. Receba atendimento
+            qualificado e tenha a certeza de cuidar bem da sua saúde com total
+            confiança e comodidade.
           </p>
           <Link
             href="/exames"
@@ -59,7 +59,7 @@ export default function Home() {
               variant: "big",
             })} px-6 py-4 h-auto shadow-app-shadow-secondary mb-12`}
           >
-            Find out more
+            Saiba mais
           </Link>
         </div>
       </main>

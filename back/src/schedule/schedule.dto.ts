@@ -3,21 +3,22 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
+  IsUUID,
 } from 'class-validator';
 
 export class CreateScheduleDto {
   @IsString()
   @IsOptional()
   id: string;
+
   @IsNotEmpty()
   @IsDateString()
-  scheduledDate: string; // Data e hora do agendamento
+  scheduledDate: string;
+
+  @IsString()
+  information: string;
 
   @IsNotEmpty()
-  @IsString()
-  information: string; // Informações adicionais sobre o agendamento
-
-  @IsNotEmpty()
-  @IsString()
-  examId: string; // ID do exame associado ao agendamento
+  @IsUUID('all')
+  examId: string;
 }

@@ -6,6 +6,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { ExamEntity } from 'src/db/entities/exam.entity';
 import { Repository } from 'typeorm';
+import { toZonedTime } from 'date-fns-tz';
 
 @Injectable()
 export class ExamService {
@@ -43,29 +44,28 @@ export class ExamService {
       throw new NotFoundException(`Exam with ID ${examId} not found.`);
     }
 
-    const dateObj = new Date(dateToRemove);
+    const newDateToRemove = toZonedTime(dateToRemove, 'America/Sao_Paulo');
 
-    if (isNaN(dateObj.getTime())) {
+    if (isNaN(newDateToRemove.getDay())) {
       throw new BadRequestException('Invalid ISO date format.');
     }
 
-    const date = dateObj.toISOString().split('T')[0]; // "YYYY-MM-DD"
-    const time = dateObj.toISOString().split('T')[1].slice(0, 5); // "HH:mm"
+    const filteredDates = exam.availableDates.filter((availableDate) => {
+      const newAvailableDate = toZonedTime(availableDate, 'America/Sao_Paulo');
 
-    const initialLength = exam.availableDates.length;
-    exam.availableDates = exam.availableDates.filter(
-      (availableDate) =>
-        availableDate.date !== date && availableDate.time !== time,
-    );
+      return (
+        `${newAvailableDate.getDay()}-${newAvailableDate.getHours()}-${newAvailableDate.getMinutes()}` !==
+        `${newDateToRemove.getDay()}-${newDateToRemove.getHours()}-${newDateToRemove.getMinutes()}`
+      );
+    });
 
-    // Se nenhuma data foi removida, lança um erro
-    if (exam.availableDates.length === initialLength) {
-      throw new BadRequestException({
-        message: 'Date not found in available dates of the exam',
-        statusCode: 400,
-        error: 'Bad Request',
-      });
+    if (filteredDates.length === exam.availableDates.length) {
+      throw new BadRequestException(
+        `The date ${dateToRemove} is not available`,
+      );
     }
+
+    exam.availableDates = filteredDates;
 
     await this.examRepository.save(exam);
   }
@@ -78,16 +78,13 @@ export class ExamService {
     }
 
     const dateObj = new Date(dateToAdd);
+
     if (isNaN(dateObj.getTime())) {
       throw new BadRequestException('Invalid ISO date format.');
     }
 
-    const date = dateObj.toISOString().split('T')[0]; // "YYYY-MM-DD"
-    const time = dateObj.toISOString().split('T')[1].slice(0, 5); // "HH:mm"
-
     const dateAlreadyExists = exam.availableDates.some(
-      (availableDate) =>
-        availableDate.date === date && availableDate.time === time,
+      (availableDate) => availableDate.getTime() === dateObj.getTime(),
     );
 
     const currentDate = new Date();
@@ -99,7 +96,7 @@ export class ExamService {
       return;
     }
 
-    exam.availableDates.push({ date, time });
+    exam.availableDates.push(dateObj);
 
     await this.examRepository.save(exam);
   }

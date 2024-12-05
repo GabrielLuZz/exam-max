@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Volkhov, Poppins, Inter } from "next/font/google";
 import { Footer, Header } from "@/components/templates";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const volkhov = Volkhov({
   display: "fallback",
@@ -58,6 +60,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <ToastContainer />
         </div>
       </body>
     </html>

@@ -16,6 +16,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         logging: false,
         entities: [__dirname + '/entities/**'],
         migrations: [__dirname + '/migrations/*.ts'],
+        extra: {
+          timezone: 'America/Sao_Paulo',
+        },
       }),
       inject: [ConfigService],
     }),

@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { ScheduleEntity } from 'src/db/entities/schedule.entity';
 import { CreateScheduleDto } from './schedule.dto';
 import { ScheduleService } from './schedule.service';
+import { ExamEntity } from 'src/db/entities/exam.entity';
 
 @Controller('schedule')
 export class ScheduleController {
@@ -20,7 +21,7 @@ export class ScheduleController {
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: string): Promise<void> {
-    await this.scheduleService.deleteSchedule(id);
+  async delete(@Param('id') id: string): Promise<ExamEntity> {
+    return await this.scheduleService.deleteSchedule(id);
   }
 }

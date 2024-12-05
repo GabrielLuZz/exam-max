@@ -13,12 +13,12 @@ export class ExamEntity {
   specialty: string;
 
   @Column({
-    type: 'jsonb',
+    type: 'timestamptz',
     nullable: true,
-    default: [],
     name: 'available_dates',
+    array: true,
   })
-  availableDates: { date: string; time: string }[];
+  availableDates: Date[];
 
   @OneToMany(() => ScheduleEntity, (schedule) => schedule.exam)
   schedules: ScheduleEntity[];

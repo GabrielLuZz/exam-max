@@ -7,14 +7,13 @@ RUN npm install --legacy-peer-deps
 # Etapa 2: Construção (apenas para produção)
 FROM node:18-alpine AS build
 WORKDIR /app
+
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
-RUN npm run build
 
 # Etapa 3: Imagem final
 FROM node:18-alpine AS runtime
 WORKDIR /app
-COPY --from=build /app/.next ./.next
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/public ./public
 COPY package*.json ./
@@ -24,6 +23,6 @@ ARG APP_ENV=production
 ENV APP_ENV=${APP_ENV}
 
 # Definir o comando de execução baseado no ambiente
-CMD ["sh", "-c", "if [ \"$APP_ENV\" = \"production\" ]; then npm run start; else npm run dev; fi"]
+CMD ["sh", "-c", "if [ \"$APP_ENV\" = \"production\" ]; then npm run build & npm run start; else npm run dev; fi"]
 
 EXPOSE 3000

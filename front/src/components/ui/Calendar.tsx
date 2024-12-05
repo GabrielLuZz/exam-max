@@ -7,11 +7,6 @@ import { DayPicker } from "react-day-picker";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "./Button";
 
-const allowedDates = [
-  new Date(2024, 11, 10), // 10 de dezembro de 2024
-  new Date(2024, 11, 15), // 15 de dezembro de 2024
-];
-
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
 function Calendar({
@@ -23,15 +18,7 @@ function Calendar({
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn("p-3 w-full max-w-[23rem]", className)}
-      disabled={(date) =>
-        !allowedDates.some(
-          (allowedDate) =>
-            allowedDate.getDate() === date.getDate() &&
-            allowedDate.getMonth() === date.getMonth() &&
-            allowedDate.getFullYear() === date.getFullYear()
-        )
-      }
+      className={cn("p-3 w-full max-w-[23rem] mx-auto", className)}
       classNames={{
         months:
           "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0 w-full",

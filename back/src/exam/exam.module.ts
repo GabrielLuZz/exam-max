@@ -22,26 +22,27 @@ export class ExamModule implements OnModuleInit {
     if (this.configService.get<string>('APP_ENV') === 'development') {
       const examCount = await this.examRepository.count();
 
-      // Verifica se não existem exames cadastrados
       if (examCount === 0) {
         console.log('Banco de dados vazio, populando...');
 
-        // Populando com exames de exemplo
         await this.examRepository.save([
           {
             name: 'Ecocardiograma',
             specialty: 'Cardiologia',
             availableDates: [
-              { date: '2024-12-01', time: '15:30' },
-              { date: '2024-12-02', time: '10:00' },
+              new Date(1764613800000).toISOString(),
+              new Date(1764680400000).toISOString(),
+              new Date(1764743400000).toISOString(),
+              new Date(1764743400000).toISOString(),
+              new Date(1764789600000).toISOString(),
             ],
           },
           {
             name: 'Raio X',
             specialty: 'Ortopedia',
             availableDates: [
-              { date: '2024-12-03', time: '14:00' },
-              { date: '2024-12-04', time: '09:30' },
+              new Date(1764680400000).toISOString(),
+              new Date(1764743400000).toISOString(),
             ],
           },
         ]);

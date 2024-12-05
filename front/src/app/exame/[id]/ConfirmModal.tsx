@@ -9,26 +9,40 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui";
+import { Loader2 } from "lucide-react";
+
+import { MouseEvent } from "react";
 
 interface ConfirmModalProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleContinue: (e: MouseEvent<HTMLButtonElement>) => void;
+  loading: boolean;
 }
 
-export function ConfirmModal({ open, setOpen }: ConfirmModalProps) {
+export function ConfirmModal({
+  open,
+  setOpen,
+  handleContinue,
+  loading,
+}: ConfirmModalProps) {
   return (
     <AlertDialog open={open} onOpenChange={() => setOpen(!open)}>
       <AlertDialogContent className="">
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>
+            Tem certeza de que deseja continuar?
+          </AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            Esta ação não pode ser desfeita e excluirá sua consulta.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          <AlertDialogCancel>Cancelar</AlertDialogCancel>
+          <AlertDialogAction onClick={handleContinue} disabled={loading}>
+            {loading && <Loader2 className="animate-spin" />}
+            Continuar
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

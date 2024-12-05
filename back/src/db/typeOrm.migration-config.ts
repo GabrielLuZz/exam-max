@@ -18,6 +18,9 @@ const dataSourceOptions: DataSourceOptions = {
   synchronize: configService.get<string>('APP_ENV') !== 'production',
   entities: [ExamEntity, ScheduleEntity],
   migrations: [__dirname + '/migrations/*.ts'],
+  extra: {
+    timezone: 'America/Sao_Paulo',
+  },
 };
 
 export default new DataSource(dataSourceOptions);

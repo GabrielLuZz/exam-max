@@ -5,6 +5,7 @@ import { ScheduleEntity } from 'src/db/entities/schedule.entity';
 import { Repository } from 'typeorm';
 import { CreateScheduleDto } from './schedule.dto';
 import { ExamService } from 'src/exam/exam.service';
+import { toZonedTime } from 'date-fns-tz';
 
 @Injectable()
 export class ScheduleService {
@@ -30,7 +31,7 @@ export class ScheduleService {
     await this.examService.removeAvailableDate(examId, scheduledDate);
 
     const schedule = this.scheduleRepository.create({
-      scheduledDate: new Date(scheduledDate),
+      scheduledDate: new Date(scheduledDate).toISOString(),
       information,
       exam,
     });
@@ -39,6 +40,7 @@ export class ScheduleService {
 
     const updatedExam = await this.examRepository.findOne({
       where: { id: examId },
+      relations: ['schedules'],
     });
 
     return { id: scheduleSaved.id, ...scheduleSaved, exam: updatedExam };
@@ -50,7 +52,7 @@ export class ScheduleService {
     });
   }
 
-  async deleteSchedule(id: string): Promise<void> {
+  async deleteSchedule(id: string): Promise<ExamEntity> {
     const schedule = await this.scheduleRepository.findOne({
       where: { id },
       relations: ['exam'],
@@ -66,5 +68,12 @@ export class ScheduleService {
     );
 
     await this.scheduleRepository.remove(schedule);
+
+    const exam = await this.examRepository.findOne({
+      where: { id: schedule.exam.id },
+      relations: ['schedules'],
+    });
+
+    return exam;
   }
 }
