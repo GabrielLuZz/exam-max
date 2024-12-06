@@ -3,9 +3,12 @@ import Image from "next/image";
 import logo from "@/assets/img/logo.svg";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const path = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +34,7 @@ export function Header() {
       }`}
       style={{ marginBottom: "clamp(2rem, 6.375cqi, 6.375rem)" }}
     >
-      <div className="wrapper">
+      <div className="wrapper flex justify-between gap-3 items-end">
         <Link href="/" className="hover-opacity inline-block">
           <Image
             src={logo}
@@ -39,6 +42,18 @@ export function Header() {
             priority
           />
         </Link>
+        <nav className="flex items-center">
+          <Link
+            href="/exames"
+            className={`font-inter font-medium  ${
+              path === "/exames"
+                ? "text-app-secondary"
+                : "font-inter font-medium text-gray-800"
+            }`}
+          >
+            Exames
+          </Link>
+        </nav>
       </div>
     </header>
   );
