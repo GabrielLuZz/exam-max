@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Volkhov, Poppins, Inter } from "next/font/google";
-import { Footer, Header } from "@/components/templates";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -56,12 +55,8 @@ export default function RootLayout({
       <body
         className={`${volkhov.variable} ${poppins.variable} ${inter.variable}`}
       >
-        <div className="relative flex flex-col min-h-screen">
-          <Header />
-          {children}
-          <Footer />
-          <ToastContainer />
-        </div>
+        {children}
+        <ToastContainer />
       </body>
     </html>
   );

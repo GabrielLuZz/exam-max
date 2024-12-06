@@ -4,12 +4,20 @@ import Link from "next/link";
 import bg_blue_deco from "@/assets/img/bg-blue-deco.svg";
 import circle_orange_deco from "@/assets/img/circle-orange-deco.svg";
 import little_doctor from "@/assets/img/little-doctor.png";
+import * as motion from "motion/react-client";
 
 export default function Home() {
   return (
     <>
       <div className="absolute right-0 top-[-3rem] z-[-1] h-full overflow-hidden">
-        <Image src={bg_blue_deco} alt="" className="" />
+        <motion.div
+          layout
+          initial={{ width: "0" }}
+          animate={{ width: "542px" }}
+          transition={{ duration: 0.6, ease: "easeIn" }}
+        >
+          <Image src={bg_blue_deco} alt="" className="w-full" />
+        </motion.div>
       </div>
 
       <Image
@@ -18,7 +26,13 @@ export default function Home() {
         className="absolute left-[-1rem] top-[-3rem]"
       />
 
-      <main className="flex">
+      <motion.main
+        key="home"
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
         <div className="wrapper relative flex flex-col justify-center">
           <Image
             width={468}
@@ -62,7 +76,7 @@ export default function Home() {
             Saiba mais
           </Link>
         </div>
-      </main>
+      </motion.main>
     </>
   );
 }

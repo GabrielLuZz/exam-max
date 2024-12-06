@@ -8,6 +8,7 @@ import { baseUrlForServer } from "@/services/back";
 import { notFound } from "next/navigation";
 import { SchedulesList } from "./SchedulesList";
 import ExamProvider from "./ExamContext";
+import * as motion from "motion/react-client";
 
 const getExam = async (id: string): Promise<ExamType> => {
   const headers = new Headers();
@@ -67,18 +68,31 @@ export default async function PageExame({
   return (
     <>
       <div className="absolute left-0 top-[-3rem] z-[-1] w-full h-full overflow-hidden flex items-end">
-        <Image
-          src={bg_blue_deco}
-          alt=""
-          className="rotate-[175deg] translate-x-[-180px] translate-y-[140px] max-w-[31.25rem]"
-        />
+        <motion.div
+          layout
+          initial={{ width: "0" }}
+          animate={{ width: "542px" }}
+          transition={{ duration: 0.6, ease: "easeIn" }}
+        >
+          <Image
+            src={bg_blue_deco}
+            alt=""
+            className="rotate-[175deg] translate-x-[-180px] translate-y-[140px] max-w-[31.25rem] w-full"
+          />
+        </motion.div>
       </div>
 
       <div className="absolute right-0 bottom-[3.5rem] z-[-1] w-full h-full overflow-hidden flex items-end justify-end">
         <Image src={circle_orange_deco_little} alt="" className="" />
       </div>
 
-      <main>
+      <motion.main
+        key="exame"
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+        transition={{ duration: 0.5, ease: "easeIn" }}
+      >
         <div className="wrapper">
           {exam?.specialty && (
             <span className="block text-end font-poppins font-extrabold text-[1.125rem] text-app-secondary leading-6 mb-8">
@@ -107,7 +121,7 @@ export default async function PageExame({
             <SchedulesList />
           </ExamProvider>
         </div>
-      </main>
+      </motion.main>
     </>
   );
 }

@@ -3,6 +3,7 @@ import { baseUrlForServer } from "@/services/back";
 import { ExamType } from "@/utils/types";
 import Image from "next/image";
 import Link from "next/link";
+import * as motion from "motion/react-client";
 
 const getExams = async (): Promise<ExamType[]> => {
   const headers = new Headers();
@@ -30,14 +31,27 @@ export default async function PageExames() {
   return (
     <>
       <div className="absolute right-0 top-[-3rem] z-[-1] h-full overflow-hidden flex items-end">
-        <Image
-          src={bg_blue_deco}
-          alt=""
-          className="rotate-[64deg] translate-x-[256px] translate-y-[75px]"
-        />
+        <motion.div
+          layout
+          initial={{ width: "0" }}
+          animate={{ width: "542px" }}
+          transition={{ duration: 0.6, ease: "easeIn" }}
+        >
+          <Image
+            src={bg_blue_deco}
+            alt=""
+            className="rotate-[64deg] translate-x-[256px] translate-y-[75px] w-full"
+          />
+        </motion.div>
       </div>
 
-      <main>
+      <motion.main
+        key="exames"
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -100, opacity: 0 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
         <div className="wrapper">
           <h1
             className="relative font-poppins font-bold after:block after:absolute after:bottom-0 after:left-[-1rem] after:w-[13rem] after:h-3 after:bg-underline-deco after:bg-no-repeat after:bg-contain after:scale-y-[1.8] after:z-[-1] "
@@ -72,7 +86,7 @@ export default async function PageExames() {
             ))}
           </section>
         </div>
-      </main>
+      </motion.main>
     </>
   );
 }
