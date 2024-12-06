@@ -80,6 +80,15 @@ const config: Config = {
         "underline-deco": "url('../assets/img/underline-deco.svg')",
         "back-exam-card": "url('../assets/img/back-exam-card.jpg')",
       },
+      animation: {
+        bounce: "bounce 0.5s ease-in-out infinite alternate",
+      },
+      keyframes: {
+        bounce: {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(-1rem)" },
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
