@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { ExamContext } from "./ExamContext";
 
 export function SchedulesList() {
-  const { exam, setExam } = useContext(ExamContext);
+  const { exam } = useContext(ExamContext);
 
   return (
     <div

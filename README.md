@@ -1,138 +1,207 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏥 Exam Max - Aplicação de Agendamento de Exames
 
-## Getting Started
+![Docker Compose](https://img.shields.io/badge/Docker-Compose-blue?style=flat&logo=docker)
+![Next.js](https://img.shields.io/badge/Next.js-000?style=flat&logo=next.js)
+![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=flat&logo=nestjs)
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-38B2AC?style=flat&logo=tailwind-css)
+![TypeORM](https://img.shields.io/badge/TypeORM-FE6E95?style=flat&logo=typescript)
+![Shadcn UI](https://img.shields.io/badge/Shadcn_UI-0C4A6E?style=flat&logo=shazam)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql)
 
-First, run the development server:
+📅 Aplicação completa para gerenciamento de **agendamentos de exames** médicos, construída com tecnologias modernas para oferecer desempenho e escalabilidade.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🚀 Tecnologias Utilizadas
+
+### 🖥️ **Frontend**
+
+- **Framework:** [Next.js](https://nextjs.org/)
+- **Estilização:** [Tailwind CSS](https://tailwindcss.com/)
+
+### ⚙️ **Backend**
+
+- **Framework:** [Nest.js](https://nestjs.com/)
+- **Banco de Dados:** [TypeORM](https://typeorm.io/) com suporte a múltiplos bancos de dados.
+
+### 🛢️ **Database**
+
+- **PostgreSQL**: Sistema de banco de dados relacional.
+
+---
+
+## 🖌️ **Design no Figma**
+
+📂 Veja o protótipo do design no [Figma](https://www.figma.com/design/UOPFBLUFMFFfZabTjJYsET/Exam-Max-%7C-Website?node-id=5-55&t=Lhw6Nt2bwyp22VJj-1).
+
+<div align="center">
+  <img src="./capa-figma.jpg" alt="Exemplo de imagem" width="100%" style="max-width: 60rem;">
+</div>
+
+---
+
+## 📦 Serviços
+
+1. **Frontend**:
+
+   - Criado com **Next.js** para renderização híbrida (SSR e CSR).
+   - Estilizado com **Tailwind CSS** para um design moderno e responsivo.
+   - Permite aos usuários agendar, visualizar e gerenciar consultas de exames médicos.
+
+2. **Backend**:
+
+   - Criado com **NestJS**, um framework Node.js modular e extensível.
+   - Responsável por gerenciar a lógica de negócios e comunicação com o banco de dados.
+
+3. **Database**:
+
+   - Banco de dados configurado com PostgreSQL.
+   - Gerenciado pelo ORM **TypeORM** no backend.
+
+---
+
+## 🛠️ Como Rodar a Aplicação com Docker
+
+### 🔧 Pré-requisitos
+
+- [Docker](https://www.docker.com/get-started) instalado.
+- [Docker Compose](https://docs.docker.com/compose/) configurado.
+
+### 🌀 Subindo os Serviços
+
+1. Clone este repositório:
+
+   ```bash
+   git clone https://github.com/GabrielLuZz/exam-max
+   cd exam-max
+   ```
+
+2. Configure os arquivos `.env` na pasta raiz, na front e na back:
+
+   - Crie um arquivo `.env` onde tiver um `.env.example` e insira as variáveis de ambiente necessárias. Exemplo:
+     ```env
+     DATABASE_URL=postgres://user:password@database:5432/exams_db
+     JWT_SECRET=super_secret_key
+     ```
+
+3. Execute o comando para iniciar os serviços:
+
+   ```bash
+   docker-compose up --build
+   ```
+
+4. Acesse os serviços:
+   - **Frontend:** [http://localhost:3001](http://localhost:3001)
+   - **Backend:** [http://localhost:3000](http://localhost:3000)
+   - **Database**: Utilize uma ferramenta como [PgAdmin](https://www.pgadmin.org/) ou [DBeaver](https://dbeaver.io/) para acessar via `localhost:5432`.
+
+---
+
+## 🗂️ Estrutura do Projeto
+
+```
+.
+├── docker-compose.yml                  # Configurações do Docker Compose
+├── front/                                           # Código do Frontend em Next.js
+├── back/                                           # Código do Backend em Nest.js
+└── .env.example                               # Modelo do arquivo de variáveis de ambiente
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📝 Variáveis de Ambiente
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+As principais variáveis que devem ser configuradas no arquivo `.env` incluem:
 
-## Learn More
+- **Raiz da aplicação**:
 
-To learn more about Next.js, take a look at the following resources:
+  - `APP_ENV`: Ambiente da aplicação (valores possíveis: `development | production`).
+  - `POSTGRES_USER`: Usuário do banco de dados.
+  - `POSTGRES_PASSWORD`: Senha do usuário do banco de dados.
+  - `POSTGRES_DB`: Nome do banco de dados.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Backend**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+  - `DB_HOST`: host do banco de dados (rodado localmente é o nome do serviço docker, padrão: `database`).
+  - `DB_PORT`: porta em que o banco de dados está rodando. (por padrão `5432`)
+  - `DB_DATABASE`: Nome do banco de dados configurado na variável `POSTGRES_DB`.
+  - `DB_USERNAME`: Nome do usuário configurado na variável `POSTGRES_USER`.
+  - `DB_PASSWORD`: Senha do usuário configurado na variável `POSTGRES_PASSWORD`.
+  - `CLIENTS_URLS`: Urls permitidas de acessar a aplicação em produção (ex.: `http://front:3001,http://localhost:3001`).
 
-## Deploy on Vercel
+- **Frontend**:
+  - Não possui variáveis de ambiente
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📝 Comandos Úteis
 
-<br /><br />
+### 🐳 Comandos Docker
 
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+- Subir os containers:
+  ```bash
+  docker-compose up
+  ```
+- Derrubar os containers:
+  ```bash
+  docker-compose down
+  ```
+- **Remover volumes e containers para um reset completo**:
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+  ```bash
+  docker-compose down --volumes
+  ```
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- **Reconstruir a aplicação**:
+  ```bash
+  docker-compose up --build
+  ```
+- Reconstruir a aplicação sem cache:
+  ```bash
+  docker-compose build --no-cache
+  ```
+- Inspecionar logs:
+  ```bash
+  docker-compose logs -f
+  ```
 
-## Description
+### 🧹 Limpar Docker
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Remover containers parados:
+  ```bash
+  docker system prune
+  ```
+- Limpar volumes não utilizados:
+  ```bash
+  docker volume prune
+  ```
 
-## Project setup
+---
 
-```bash
-$ npm install
-```
+## 🌟 **Funcionalidades**
 
-## Compile and run the project
+✅ Agendamento de exames médicos com horários e datas pre estabelecido por uma entidade administradora.  
+✅ listagem de exames e agendamentos.  
+✅ Deleção de agendamentos.  
+✅ Integração com banco de dados para armazenar e consultar informações.
 
-```bash
-# development
-$ npm run start
+---
 
-# watch mode
-$ npm run start:dev
+## 🤝 Contribuições
 
-# production mode
-$ npm run start:prod
-```
+Contribuições são muito bem-vindas!
 
-## Run tests
+1. Faça um fork do repositório.
+2. Crie uma branch para sua feature ou correção:
+   ```bash
+   git checkout -b minha-nova-feature
+   ```
+3. Envie suas alterações:
+   ```bash
+   git commit -m "Minha nova feature"
+   git push origin minha-nova-feature
+   ```
 
-```bash
-# unit tests
-$ npm run test
+---
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+> Feito com ❤️ por [Gabriel Luz](https://github.com/GabrielLuZz) 🚀

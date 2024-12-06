@@ -8,7 +8,7 @@ import {
 } from "@/components/ui";
 import { ScheduleType } from "@/utils/types";
 import { ChevronRight, Loader2 } from "lucide-react";
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -57,10 +57,10 @@ export function MakeAppointmentForm() {
     if (selectedDate && !isNaN(selectedDate?.getDay())) {
       setValue("scheduledDate", selectedDate?.toISOString());
     }
-  }, []);
+  });
 
   useEffect(() => {
-    Object.entries(errors).map(([field, error]) => {
+    Object.entries(errors).map(([, error]) => {
       if (error.message)
         toast.warning(error.message, {
           position: "bottom-right",
@@ -68,9 +68,7 @@ export function MakeAppointmentForm() {
     });
   }, [errors]);
 
-  const handleOnSubmit: SubmitHandler<
-    IFormData & { [key: string]: any }
-  > = async (data) => {
+  const handleOnSubmit: SubmitHandler<IFormData> = async (data) => {
     if (data.timeCheck) {
       const headers = new Headers();
       headers.append("Content-Type", "application/json");
@@ -100,7 +98,7 @@ export function MakeAppointmentForm() {
           position: "bottom-right",
         });
       } else {
-        let schedule: ScheduleType = scheduleResponse;
+        const schedule: ScheduleType = scheduleResponse;
 
         resetField("information");
         schedule.exam.availableDates.sort((a, b) => {
@@ -139,7 +137,7 @@ export function MakeAppointmentForm() {
   };
 
   const handleSubmitButtonClick = async () => {
-    let isValid = await trigger();
+    const isValid = await trigger();
 
     if (isValid) {
       setLoading(true);

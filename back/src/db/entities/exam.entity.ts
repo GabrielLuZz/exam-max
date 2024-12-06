@@ -15,6 +15,7 @@ export class ExamEntity {
   @Column({
     type: 'timestamptz',
     nullable: true,
+    default: [],
     name: 'available_dates',
     array: true,
   })

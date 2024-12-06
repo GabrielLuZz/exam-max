@@ -19,36 +19,37 @@ export class ExamModule implements OnModuleInit {
   ) {}
 
   async onModuleInit() {
-    if (this.configService.get<string>('APP_ENV') === 'development') {
-      const examCount = await this.examRepository.count();
+    // adicionar verificação de ambiente caso queira
+    // if (this.configService.get<string>('APP_ENV') === 'development') {}
 
-      if (examCount === 0) {
-        console.log('Banco de dados vazio, populando...');
+    const examCount = await this.examRepository.count();
 
-        await this.examRepository.save([
-          {
-            name: 'Ecocardiograma',
-            specialty: 'Cardiologia',
-            availableDates: [
-              new Date(1764613800000).toISOString(),
-              new Date(1764680400000).toISOString(),
-              new Date(1764743400000).toISOString(),
-              new Date(1764743400000).toISOString(),
-              new Date(1764789600000).toISOString(),
-            ],
-          },
-          {
-            name: 'Raio X',
-            specialty: 'Ortopedia',
-            availableDates: [
-              new Date(1764680400000).toISOString(),
-              new Date(1764743400000).toISOString(),
-            ],
-          },
-        ]);
+    if (examCount === 0) {
+      console.log('Banco de dados vazio, populando...');
 
-        console.log('Dados de exemplo inseridos com sucesso!');
-      }
+      await this.examRepository.save([
+        {
+          name: 'Ecocardiograma',
+          specialty: 'Cardiologia',
+          availableDates: [
+            new Date(1764613800000).toISOString(),
+            new Date(1764680400000).toISOString(),
+            new Date(1764743400000).toISOString(),
+            new Date(1764743400000).toISOString(),
+            new Date(1764789600000).toISOString(),
+          ],
+        },
+        {
+          name: 'Raio X',
+          specialty: 'Ortopedia',
+          availableDates: [
+            new Date(1764680400000).toISOString(),
+            new Date(1764743400000).toISOString(),
+          ],
+        },
+      ]);
+
+      console.log('Dados de exemplo inseridos com sucesso!');
     }
   }
 }

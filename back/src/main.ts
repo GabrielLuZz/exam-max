@@ -23,7 +23,7 @@ async function bootstrap() {
   app.enableCors({
     origin:
       process.env.APP_ENV === 'production'
-        ? (process?.env?.CLIENTS_URL.split(',') ?? '')
+        ? (process?.env?.CLIENTS_URLS?.split(',') ?? '')
         : '*',
   });
   await app.listen(process.env.PORT ?? 3000);

@@ -23,6 +23,6 @@ ARG APP_ENV=production
 ENV APP_ENV=${APP_ENV}
 
 # Definir o comando de execução baseado no ambiente
-CMD ["sh", "-c", "if [ \"$APP_ENV\" = \"production\" ]; then node dist/main; else npm run start:dev; fi"]
+CMD ["sh", "-c", "if [ \"$APP_ENV\" = \"production\" ]; then npm run build && npm run migration:run && node dist/main; else npm run start:dev; fi"]
 
 EXPOSE 3000

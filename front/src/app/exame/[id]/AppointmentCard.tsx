@@ -4,7 +4,7 @@ import { ConfirmModal } from "./ConfirmModal";
 import { X } from "lucide-react";
 import { MouseEvent, useContext, useState } from "react";
 import { ScheduleType } from "@/utils/types";
-import { format, setDate } from "date-fns";
+import { format } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { baseUrlForClient } from "@/services/back";
 import { toast } from "react-toastify";
@@ -58,7 +58,7 @@ export function AppointmentCard({ schedule }: AppointmentCardProps) {
         position: "bottom-right",
       });
 
-      setExam((prev) => scheduleResponse);
+      setExam(scheduleResponse);
 
       setDate((prev) => {
         const canceledSchedule = exam.schedules.find(

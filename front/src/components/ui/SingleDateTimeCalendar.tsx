@@ -39,7 +39,7 @@ export function SingleDateTimeCalendar({
         setValue("timeCheck", true);
       }
     }
-  }, []);
+  });
 
   const handleDateSelect: SelectSingleEventHandler = (
     newDate: Date | undefined
