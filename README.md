@@ -52,6 +52,7 @@
 
    - Criado com **NestJS**, um framework Node.js modular e extensível.
    - Responsável por gerenciar a lógica de negócios e comunicação com o banco de dados.
+   - [Baixar a coleção da api para o hoppscotch ](./hoppscotch-collection.json)
 
 3. **Database**:
 
