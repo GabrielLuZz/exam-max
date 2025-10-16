@@ -8,6 +8,14 @@ RUN npm install --legacy-peer-deps
 FROM node:18-alpine AS build
 WORKDIR /app
 
+# Variáveis de ambiente necessárias no build
+ARG APP_ENV=production
+ARG NEXT_PUBLIC_BACKEND_URL_FOR_CLIENT
+ARG BACKEND_URL_FOR_SERVER
+ENV APP_ENV=${APP_ENV}
+ENV NEXT_PUBLIC_BACKEND_URL_FOR_CLIENT=${NEXT_PUBLIC_BACKEND_URL_FOR_CLIENT}
+ENV BACKEND_URL_FOR_SERVER=${BACKEND_URL_FOR_SERVER}
+
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
@@ -21,6 +29,10 @@ COPY package*.json ./
 # Variável de ambiente para controlar o comando de execução
 ARG APP_ENV=production
 ENV APP_ENV=${APP_ENV}
+ARG NEXT_PUBLIC_BACKEND_URL_FOR_CLIENT
+ARG BACKEND_URL_FOR_SERVER
+ENV NEXT_PUBLIC_BACKEND_URL_FOR_CLIENT=${NEXT_PUBLIC_BACKEND_URL_FOR_CLIENT:-http://localhost:3000}
+ENV BACKEND_URL_FOR_SERVER=${BACKEND_URL_FOR_SERVER:-http://back:3000}
 
 # Definir o comando de execução baseado no ambiente
 CMD ["sh", "-c", "if [ \"$APP_ENV\" = \"production\" ]; then npm run build && npm run start; else npm run dev; fi"]

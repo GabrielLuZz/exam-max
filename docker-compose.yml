@@ -6,8 +6,12 @@ services:
       dockerfile: Dockerfile
       args:
         APP_ENV: ${APP_ENV}
+        NEXT_PUBLIC_BACKEND_URL_FOR_CLIENT: ${NEXT_PUBLIC_BACKEND_URL_FOR_CLIENT}
+        BACKEND_URL_FOR_SERVER: ${BACKEND_URL_FOR_SERVER}
     environment:
       APP_ENV: ${APP_ENV}
+      NEXT_PUBLIC_BACKEND_URL_FOR_CLIENT: ${NEXT_PUBLIC_BACKEND_URL_FOR_CLIENT}
+      BACKEND_URL_FOR_SERVER: ${BACKEND_URL_FOR_SERVER}
     ports:
       - "3001:3000"
     volumes:

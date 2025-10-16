@@ -6,6 +6,6 @@ do serviço do back no lugar do domínio
 */
 
 export const baseUrlForClient =
-  process.env.BACKEND_URL_FOR_CLIENT ?? "http://localhost:3000";
+  process.env.NEXT_PUBLIC_BACKEND_URL_FOR_CLIENT || "http://localhost:3000";
 export const baseUrlForServer =
-  process.env.BACKEND_URL_FOR_SERVER ?? "http://back:3000";
+  process.env.BACKEND_URL_FOR_SERVER || "http://back:3000";
