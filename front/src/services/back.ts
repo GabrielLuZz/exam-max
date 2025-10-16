@@ -5,6 +5,7 @@ mesmo host a url do for server vai ter o nome
 do serviço do back no lugar do domínio
 */
 
-export const baseUrlForClient = "http://localhost:3000";
+export const baseUrlForClient =
+  process.env.BACKEND_URL_FOR_CLIENT ?? "http://localhost:3000";
 export const baseUrlForServer =
   process.env.BACKEND_URL_FOR_SERVER ?? "http://back:3000";
